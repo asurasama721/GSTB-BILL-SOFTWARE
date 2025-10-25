@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Billing Software</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Billing Software</h1>
+
+        <div class="toggle-container">
+            <button class="toggle-btn" id="company-info-toggle">
+                <i class="material-icons">business</i> Company Info
+            </button>
+            <button class="toggle-btn active" id="customer-info-toggle">
+                <i class="material-icons">people</i> Customer Info
+            </button>
+            <button class="toggle-btn" id="bill-view-toggle">
+                <i class="material-icons">receipt</i> Bill View
+            </button>
+            <button class="toggle-btn" id="saved-bills-toggle">
+                <i class="material-icons">history</i> Saved Bills
+            </button>
+            <button class="toggle-btn" id="manage-customers-btn">
+                <i class="material-icons">contacts</i> Manage Customers
+            </button>
+            <button class="toggle-btn" id="save-bill-btn">
+                <i class="material-icons">save</i> Save Bill
+            </button>
+        </div>
+
+        <!-- Company Information Section -->
+        <div class="company-info-section" id="company-info-section">
+            <h2>Company Information</h2>
+
+            <div class="form-group">
+                <label for="company-name">Company Name:</label>
+                <input type="text" id="company-name" value="Your Company Name">
+            </div>
+
+            <div class="form-group">
+                <label for="company-address">Address:</label>
+                <textarea id="company-address">Your Address</textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="company-gst">GSTIN/UIN:</label>
+                <input type="text" id="company-gst" value="2712ABCD34DZ9">
+            </div>
+
+            <div class="form-group">
+                <label for="company-mobile">Mobile No:</label>
+                <input type="text" id="company-mobile" value="12345-67890">
+            </div>
+
+            <div class="form-group">
+                <label for="company-email">Email:</label>
+                <input type="email" id="company-email" value="abcd@gmail.com">
+            </div>
+
+            <div class="section-divider"></div>
+
+            <h3>Banking Details</h3>
+            <div class="form-group">
+                <label for="account-holder">A/C Holder Name:</label>
+                <input type="text" id="account-holder" placeholder="Account Holder Name">
+            </div>
+            <div class="form-group">
+                <label for="account-number">A/C No:</label>
+                <input type="text" id="account-number" placeholder="Account Number">
+            </div>
+            <div class="form-group">
+                <label for="ifsc-code">IFSC Code:</label>
+                <input type="text" id="ifsc-code" placeholder="IFSC Code">
+            </div>
+            <div class="form-group">
+                <label for="branch">Branch:</label>
+                <input type="text" id="branch" placeholder="Branch Name">
+            </div>
+            <div class="form-group">
+                <label for="bank-name">Bank Name:</label>
+                <input type="text" id="bank-name" placeholder="Bank Name">
+            </div>
+
+            <div class="action-buttons">
+                <button class="action-btn" id="save-company-info">
+                    <i class="material-icons">save</i> Save Company Info
+                </button>
+            </div>
+        </div>
+
+        <!-- Customer Information Section (formerly Input Section) -->
+        <div class="input-section active" id="input-section">
+            <h2>Enter Bill Details</h2>
+
+            <div class="form-group">
+                <label for="invoice-no">Invoice No:</label>
+                <input type="text" id="invoice-no" value="001">
+            </div>
+
+            <div class="form-group">
+                <label for="invoice-date">Date:</label>
+                <input type="date" id="invoice-date" value="2025-08-26">
+            </div>
+
+            <div class="section-divider"></div>
+
+            <h3>Customer Details</h3>
+            <div class="customer-type-selector">
+                <label for="customer-type">Select Customer Type:</label>
+                <select id="customer-type" name="customer-type">
+                    <option value="bill-to" selected>Bill To</option>
+                    <option value="both">Bill To & Ship To</option>
+                </select>
+            </div>
+
+            <div class="bill-to-section">
+                <h4>Bill To</h4>
+                <div class="form-group">
+                    <label for="consignee-name">Name:</label>
+                    <input type="text" id="consignee-name" value="Customer Name"
+                        placeholder="Start typing customer name or GSTIN...">
+                    <div class="customer-suggestions" id="consignee-suggestions"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="consignee-address">Address:</label>
+                    <textarea id="consignee-address">Customer Address</textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="consignee-gst">GSTIN/UIN:</label>
+                    <input type="text" id="consignee-gst" value="2712ABCD34DZ9">
+                </div>
+
+                <div class="form-group">
+                    <label for="consignee-state">State Name:</label>
+                    <input type="text" id="consignee-state" value="Maharashtra">
+                </div>
+
+                <div class="form-group">
+                    <label for="consignee-code">State Code:</label>
+                    <input type="text" id="consignee-code" value="27">
+                </div>
+
+                <div class="form-group">
+                    <label for="consignee-contact">Contact No:</label>
+                    <input type="text" id="consignee-contact" placeholder="Contact Number">
+                </div>
+            </div>
+
+            <div class="ship-to-section" id="ship-to-section">
+                <h4>Ship To</h4>
+                <div class="form-group">
+                    <label for="buyer-name">Name:</label>
+                    <input type="text" id="buyer-name" value="Customer Name">
+                </div>
+
+                <div class="form-group">
+                    <label for="buyer-address">Address:</label>
+                    <textarea id="buyer-address">Customer Address</textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="buyer-gst">GSTIN/UIN:</label>
+                    <input type="text" id="buyer-gst" value="2712ABCD34DZ9">
+                </div>
+
+                <div class="form-group">
+                    <label for="buyer-state">State Name:</label>
+                    <input type="text" id="buyer-state" value="Maharashtra">
+                </div>
+
+                <div class="form-group">
+                    <label for="buyer-code">State Code:</label>
+                    <input type="text" id="buyer-code" value="27">
+                </div>
+
+                <div class="form-group">
+                    <label for="buyer-contact">Contact No:</label>
+                    <input type="text" id="buyer-contact" placeholder="Contact Number">
+                </div>
+
+                <div class="form-group">
+                    <label for="place-of-supply">Place Of Supply:</label>
+                    <input type="text" id="place-of-supply" value="Maharashtra">
+                </div>
+            </div>
+
+            <div class="section-divider"></div>
+
+            <h3>Items</h3>
+            <div class="items-input">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Description</th>
+                            <th>HSN/SAC</th>
+                            <th>Quantity</th>
+                            <th>Per</th>
+                            <th>Rate</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="items-tbody">
+                        <tr>
+                            <td><input type="text" class="item-desc" value="Product A"></td>
+                            <td><input type="text" class="item-hsn" value="48239019"></td>
+                            <td><input type="number" class="item-qty" value="7"></td>
+                            <td><input type="text" class="item-per" value="nos"></td>
+                            <td><input type="number" class="item-rate" value="847.46" step="0.01"></td>
+                            <td><button class="remove-item-btn">Remove</button></td>
+                        </tr>
+                        <tr>
+                            <td><input type="text" class="item-desc" value="Product B">
+                            </td>
+                            <td><input type="text" class="item-hsn" value="48239019"></td>
+                            <td><input type="number" class="item-qty" value="4"></td>
+                            <td><input type="text" class="item-per" value="nos"></td>
+                            <td><input type="number" class="item-rate" value="847.46" step="0.01"></td>
+                            <td><button class="remove-item-btn">Remove</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <button class="add-item-btn" id="add-item">Add Item</button>
+            </div>
+
+            <div class="form-group">
+                <label for="transaction_type">Select transaction type:</label>
+                <div class="gst-input-group">
+                    <select id="transaction_type" name="transaction_type">
+                        <option value="intrastate">Intrastate (CGST & SGST)</option>
+                        <option value="interstate">Interstate (IGST)</option>
+                    </select>
+                    <input type="number" id="gst-percent" placeholder="GST %" value="18" step="0.01">
+                </div>
+            </div>
+
+            <div class="action-buttons">
+                <button class="action-btn" id="generate-bill">
+                    <i class="material-icons">receipt</i> Generate Bill
+                </button>
+            </div>
+        </div>
+
+        <!-- Bill View Section -->
+        <div class="bill-section" id="bill-section">
+            <div id="bill-content">
+                <div class="invoice-header">
+                    <h4>TAX INVOICE</h4>
+                    <h2 id="bill-company-name">Your Company Name</h2>
+                    <p id="bill-company-address">Your Company Address</p>
+                    <p>GSTIN / UIN: <span id="bill-company-gst">27FV1212FGS1Z6</span></p>
+                    <p>Mobile no: <span id="bill-company-mobile">12345-67890</span></p>
+                    <p>Email: <span id="bill-company-email">abc@gmail.com</span></p>
+                </div>
+
+                <div class="invoice-number-date">
+                    <div>Invoice No : <strong id="bill-invoice-no">001</strong></div>
+                    <div>Dated : <strong id="bill-date">25 AUG 25</strong></div>
+                </div>
+
+                <div class="consignee-buyer-container">
+                    <div class="consignee-info">
+                        <h3>Bill To</h3>
+                        <p><strong id="bill-consignee-name">Customer Name</strong></p>
+                        <p id="bill-consignee-address">Customer Address</p>
+                        <p>GSTIN / UIN: <span id="bill-consignee-gst">2712ABCD34DZ9</span></p>
+                        <p>State Name: <span id="bill-consignee-state">Maharashtra</span>, Code: <span
+                                id="bill-consignee-code">27</span></p>
+                        <p>Contact No: <span id="bill-consignee-contact"></span></p>
+                    </div>
+
+                    <div class="buyer-info" id="bill-buyer-info">
+                        <h3>Ship to</h3>
+                        <p><strong id="bill-buyer-name">Customer Name</strong></p>
+                        <p id="bill-buyer-address">Customer Address</p>
+                        <p>GSTIN / UIN: <span id="bill-buyer-gst">2712ABCD34DZ9</span></p>
+                        <p>State Name: <span id="bill-buyer-state">Maharashtra</span>, Code: <span
+                                id="bill-buyer-code">27</span></p>
+                        <p>Contact No: <span id="bill-buyer-contact"></span></p>
+                        <p>Place Of Supply: <span id="bill-place-of-supply">Maharashtra</span></p>
+                    </div>
+                </div>
+
+                <div class="items-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Sr No.</th>
+                                <th>Description of Goods/Services</th>
+                                <th>HSN/SAC</th>
+                                <th>Quantity</th>
+                                <th>Per</th>
+                                <th>Rate</th>
+                                <th>Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody id="bill-items-tbody">
+                            <!-- Items will be populated here -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="total-section">
+                    <table id="bill-totals-table">
+                        <!-- Totals will be populated here -->
+                    </table>
+                </div>
+
+                <div class="tax-section">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th class="align-center" rowspan="2">HSN/SAC</th>
+                                <th class="align-center" rowspan="2">Taxable Value</th>
+                                <th class="align-center" colspan="2">Central Tax</th>
+                                <th class="align-center" colspan="2">State Tax</th>
+                                <th class="align-center" rowspan="2">Total Tax Amount</th>
+                            </tr>
+                            <tr>
+
+                                <th class="align-center">Rate</th>
+                                <th class="align-center">Amount</th>
+                                <th class="align-center">Rate</th>
+                                <th class="align-center">Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody id="bill-tax-tbody">
+                            <!-- Tax details will be populated here -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <table>
+                    <tr>
+                        <td>
+                            <p><strong>Amount Chargeable (in words)</strong></p>
+                        </td>
+                        <td class="align-center">
+                            <p id="bill-company-signatory">for MAHALAXMI LAMINATES</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p id="bill-amount-words">Rupees Eleven Thousand Eight Hundred Sixty Five Only</p>
+                        </td>
+                        <td rowspan="2"></td>
+                    </tr>
+                    <tr>
+                        <td class="bank-info">
+                            <p>A/C Holder Name : <span id="bill-account-holder"></span></p>
+                            <p>A/C No : <span id="bill-account-number"></span></p>
+                            <p>IFSC : <span id="bill-ifsc-code"></span></p>
+                            <p>Branch : <span id="bill-branch"></span></p>
+                            <p>Bank Name : <span id="bill-bank-name"></span></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <b>Declaration : </b>
+                            <p><small>We declare that this invoice shows the actual price of the </small></p>
+                            <p><small>goods described and that all particulars are true and correct</small></p>
+                        </td>
+                        <td class="align-center">Authorised Signatory</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="action-buttons">
+                <button class="action-btn" id="edit-bill">
+                    <i class="material-icons">edit</i> Edit Bill
+                </button>
+                <button class="action-btn" id="print-bill">
+                    <i class="material-icons">print</i> Print Bill
+                </button>
+            </div>
+        </div>
+
+        <!-- Saved Bills Section -->
+        <div class="saved-bills-section" id="saved-bills-section">
+            <h2>Saved Bills</h2>
+
+            <div class="saved-bills-search">
+                <input type="text" id="saved-bills-search"
+                    placeholder="Search bills by invoice number or customer name...">
+            </div>
+
+            <div class="saved-bills-list" id="saved-bills-list">
+                <div class="loading-message">Loading saved bills...</div>
+            </div>
+        </div>
+
+        <!-- Customers Section -->
+        <div class="customers-section" id="customers-section">
+            <h2>Manage Customers</h2>
+
+            <div class="customers-search">
+                <input type="text" id="customers-search" placeholder="Search customers by name or GSTIN...">
+            </div>
+
+            <div class="customers-list" id="customers-list">
+                <div class="loading-message">Loading customers...</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="index.js"></script>
+</body>
+
+</html>
