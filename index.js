@@ -1140,7 +1140,7 @@
                 const totalsTable = document.getElementById('bill-totals-table');
                 totalsTable.innerHTML = `
                     <tr>
-                        <td>Total Amount</td>
+                        <td>Sub Total</td>
                         <td>${totalAmount.toFixed(2)}</td>
                     </tr>
                     ${transactionType === 'intrastate' ? `
@@ -1154,7 +1154,7 @@
                     </tr>
                     ` : `
                     <tr>
-                        <td>Add: IGST</td>
+                        <td> IGST (${gstPercent}%)</td>
                         <td>${igstAmount.toFixed(2)}</td>
                     </tr>
                     `}
