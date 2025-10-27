@@ -1,556 +1,1597 @@
 * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
-        }
-
-        body {
-            padding: 20px;
-            background-color: #f5f5f5;
-        }
-
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            background-color: white;
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            border-radius: 20px;
-        }
-
-        h1 {
-            text-align: center;
-            margin-bottom: 20px;
-            color: #333;
-        }
-
-        .toggle-container {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .toggle-btn {
-            padding: 12px 20px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            cursor: pointer;
-            border-radius: 6px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: all 0.3s ease;
-            font-size: 14px;
-            font-weight: 600;
-        }
-
-        .toggle-btn i {
-            font-size: 18px;
-        }
-
-        .toggle-btn.active {
-            background-color: #2E7D32;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-
-        .toggle-btn:hover {
-            background-color: #45a049;
-            transform: translateY(-1px);
-        }
-
-        .toggle-btn#save-bill-btn {
-            background-color: #2196F3;
-        }
-
-        .toggle-btn#save-bill-btn:hover {
-            background-color: #0b7dda;
-        }
-
-        .toggle-btn#save-bill-btn.active {
-            background-color: #0d47a1;
-        }
-
-        .toggle-btn#manage-customers-btn {
-            background-color: #FF9800;
-        }
-
-        .toggle-btn#manage-customers-btn:hover {
-            background-color: #F57C00;
-        }
-
-        .input-section,
-        .bill-section,
-        .company-info-section,
-        .saved-bills-section,
-        .customers-section {
-            display: none;
-        }
-
-        .input-section.active,
-        .bill-section.active,
-        .company-info-section.active,
-        .saved-bills-section.active,
-        .customers-section.active {
-            display: block;
-        }
-
-        .form-group {
-            margin-bottom: 15px;
-            position: relative;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
-
-        input,
-        select,
-        textarea {
-            width: 100%;
-            padding: 8px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 20px;
-        }
-
-        th,
-        td {
-            border: 1px solid #ddd;
-            padding: 5px;
-            text-align: left;
-        }
-
-        th {
-            background-color: #f2f2f2;
-        }
-
-        .invoice-header {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .invoice-header h2 {
-            font-size: 2rem;
-            margin-bottom: 10px;
-            text-transform: uppercase;
-        }
-
-        .invoice-header h4 {
-            font-weight: 500;
-            font-size: 20px;
-            margin-bottom: 15px;
-        }
-
-        .company-info,
-        .consignee-info,
-        .buyer-info {
-            margin-bottom: 20px;
-        }
-
-        .company-info h3,
-        .consignee-info h3,
-        .buyer-info h3 {
-            margin-bottom: 10px;
-            border-bottom: 1px solid #ddd;
-            padding-bottom: 5px;
-        }
-
-        .invoice-number-date {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 20px;
-            font-size: 1.10rem;
-            font-weight: bold;
-        }
-
-        .items-table {
-            margin-bottom: 20px;
-        }
-
-        .total-section {
-            margin-bottom: 20px;
-        }
-
-        .total-section table {
-            width: 50%;
-            margin-left: auto;
-        }
-
-        .tax-section {
-            margin-bottom: 20px;
-        }
-
-        .tax-section table {
-            width: 100%;
-        }
-
-        .declaration {
-            margin-top: 30px;
-            padding-top: 10px;
-            border-top: 1px solid #ddd;
-        }
-
-        .action-buttons {
-            display: flex;
-            justify-content: center;
-            margin-top: 20px;
-            gap: 10px;
-        }
-
-        .action-btn {
-            padding: 10px 20px;
-            background-color: #2196F3;
-            color: white;
-            border: none;
-            cursor: pointer;
-            border-radius: 4px;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .action-btn:hover {
-            background-color: #0b7dda;
-        }
-
-        .add-item-btn,
-        .remove-item-btn {
-            padding: 5px 10px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            cursor: pointer;
-            border-radius: 4px;
-            margin: 5px;
-        }
-
-        .remove-item-btn {
-            background-color: #f44336;
-        }
-
-        .add-item-btn:hover {
-            background-color: #45a049;
-        }
-
-        .remove-item-btn:hover {
-            background-color: #d32f2f;
-        }
-
-        .items-input table {
-            margin-bottom: 10px;
-        }
-
-        .items-input th:last-child,
-        .items-input td:last-child {
-            width: 100px;
-        }
-
-        .banking-details {
-            margin-top: 20px;
-            padding-top: 10px;
-            border-top: 1px solid #ddd;
-        }
-
-        .banking-details h3 {
-            margin-bottom: 10px;
-            border-bottom: 1px solid #ddd;
-            padding-bottom: 5px;
-        }
-
-        .gst-input-group {
-            display: flex;
-            gap: 10px;
-            align-items: center;
-        }
-
-        .gst-input-group input {
-            width: auto;
-            flex: 1;
-        }
-
-        .section-divider {
-            margin: 30px 0;
-            border-top: 2px solid #ddd;
-        }
-
-        .customer-type-selector {
-            margin-bottom: 20px;
-        }
-
-        .customer-type-selector select {
-            width: auto;
-            min-width: 200px;
-        }
-
-        .ship-to-section {
-            display: none;
-        }
-
-        .ship-to-section.active {
-            display: block;
-        }
-
-        /* Print styles */
-        /* Print styles */
-        @media print {
-
-            .toggle-container,
-            .action-buttons,
-            .input-section,
-            .company-info-section,
-            .saved-bills-section,
-            .customers-section,
-            h1 {
-                display: none !important;
-            }
-
-            .bill-section {
-                display: block !important;
-            }
-
-            body {
-                padding: 0;
-                background-color: white;
-                margin: 0;
-            }
-
-            .container {
-                box-shadow: none;
-                padding: 0;
-                margin: 0;
-                max-width: none;
-            }
-        }
-
-        .bank-info {
-            padding: 2px 0 2px 8px;
-        }
-
-        .saved-bills-section {
-            margin-top: 20px;
-        }
-
-        .saved-bills-search {
-            margin-bottom: 20px;
-        }
-
-        .saved-bills-list {
-            max-height: 400px;
-            overflow-y: auto;
-        }
-
-        .saved-bill-item {
-            padding: 10px;
-            border: 1px solid #ddd;
-            margin-bottom: 10px;
-            cursor: pointer;
-            border-radius: 4px;
-        }
-
-        .saved-bill-item:hover {
-            background-color: #f5f5f5;
-        }
-
-        .saved-bill-header {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 5px;
-        }
-
-        .saved-bill-actions {
-            display: flex;
-            gap: 10px;
-        }
-
-        .saved-bill-actions button {
-            padding: 5px 10px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        .load-bill-btn {
-            background-color: #4CAF50;
-            color: white;
-        }
-
-        .delete-bill-btn {
-            background-color: #f44336;
-            color: white;
-        }
-
-        .loading-message {
-            text-align: center;
-            padding: 20px;
-            color: #666;
-        }
-
-        .align-center {
-            text-align: center;
-        }
-
-        #bill-tax-tbody tr td {
-            text-align: center;
-        }
-
-        .items-table table td {
-            text-align: center;
-
-        }
-
-        .items-table table td:nth-child(2) {
-            text-align: left;
-
-        }
-
-        .items-table table th {
-            text-align: center;
-
-        }
-
-        .items-table table th:nth-child(2) {
-            text-align: left;
-
-        }
-
-        /* New CSS for side by side layout */
-        .consignee-buyer-container {
-            display: flex;
-            justify-content: space-between;
-            gap: 20px;
-            margin-bottom: 20px;
-        }
-
-        .consignee-info,
-        .buyer-info {
-            flex: 1;
-            margin-bottom: 0;
-        }
-
-        .buyer-info {
-            display: none;
-        }
-
-        .buyer-info.active {
-            display: block;
-        }
-
-        /* Customer suggestions */
-        .customer-suggestions {
-            position: absolute;
-            background: white;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            max-height: 200px;
-            overflow-y: auto;
-            width: 100%;
-            z-index: 1000;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-            display: none;
-        }
-
-        .customer-suggestion-item {
-            padding: 10px;
-            cursor: pointer;
-            border-bottom: 1px solid #eee;
-        }
-
-        .customer-suggestion-item:hover {
-            background-color: #f5f5f5;
-        }
-
-        .customer-suggestion-item:last-child {
-            border-bottom: none;
-        }
-
-        /* Customers section */
-        .customers-search {
-            margin-bottom: 20px;
-        }
-
-        .customers-list {
-            max-height: 400px;
-            overflow-y: auto;
-        }
-
-        .customer-item {
-            padding: 15px;
-            border: 1px solid #ddd;
-            margin-bottom: 10px;
-            border-radius: 4px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .customer-item:hover {
-            background-color: #f9f9f9;
-        }
-
-        .customer-details {
-            flex: 1;
-        }
-
-        .customer-actions {
-            display: flex;
-            gap: 10px;
-        }
-
-        .customer-actions button {
-            padding: 5px 10px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .use-customer-btn {
-            background-color: #4CAF50;
-            color: white;
-        }
-
-        .delete-customer-btn {
-            background-color: #f44336;
-            color: white;
-        }
-        #bill-totals-table tbody td:nth-child(2) {
-  text-align: right;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
 }
-#bill-totals-table tbody td{
+
+body {
+    padding: 20px;
+    background-color: #f5f5f5;
+}
+
+/* Notification System */
+.notification-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 10000;
+    max-width: 400px;
+}
+
+.notification {
+    padding: 15px 20px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    transform: translateX(400px);
+    opacity: 0;
+    transition: all 0.3s ease;
+    border-left: 4px solid;
+}
+
+.notification.show {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+.notification.hide {
+    transform: translateX(400px);
+    opacity: 0;
+}
+
+.notification-icon {
+    font-size: 20px;
+    flex-shrink: 0;
+}
+
+.notification-content {
+    flex: 1;
+}
+
+.notification-title {
+    font-weight: bold;
+    margin-bottom: 4px;
+    font-size: 14px;
+}
+
+.notification-message {
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+.notification-close {
+    background: none;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 4px;
+    color: inherit;
+    opacity: 0.7;
+}
+
+.notification-close:hover {
+    opacity: 1;
+    background: rgba(0, 0, 0, 0.1);
+}
+
+/* Notification Types */
+.notification-success {
+    background-color: #d4edda;
+    border-color: #28a745;
+    color: #155724;
+}
+
+.notification-error {
+    background-color: #f8d7da;
+    border-color: #dc3545;
+    color: #721c24;
+}
+
+.notification-warning {
+    background-color: #fff3cd;
+    border-color: #ffc107;
+    color: #856404;
+}
+
+.notification-info {
+    background-color: #d1ecf1;
+    border-color: #17a2b8;
+    color: #0c5460;
+}
+
+/* Updated Sidebar toggle button styles */
+.sidebar-toggle {
+    position: fixed !important;
+    top: 10px !important;
+    left: 10px !important;
+    z-index: 1001 !important;
+    background-color: white !important;
+    color: black !important; /* Dark orange for icon */
+    border: 2px solid #8d8d8d !important; /* Dark gray border */
+    border-radius: 4px !important;
+    padding: 8px !important;
+    cursor: pointer !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2) !important;
+    width: auto !important;
+    height: auto !important;
+    transition: all 0.3s ease !important;
+}
+
+.sidebar-toggle:hover {
+    background-color: rgba(0, 0, 0, 0.397) !important; /* Dark orange background on hover */
+    color: white !important; /* White icon on hover */
+    border-color: #666 !important; /* Keep dark gray border */
+}
+
+.sidebar-toggle .material-symbols-outlined {
+    font-size: 24px !important;
+    transition: transform 0.3s ease !important;
+}
+
+/* Update mobile responsiveness */
+@media (max-width: 767px) {
+    .sidebar-toggle .material-symbols-outlined {
+        font-size: 20px !important;
+    }
+}
+
+/* Sidebar styles */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -300px;
+    width: 280px;
+    height: 100vh;
+    background-color: #f8f9fa;
+    box-shadow: 2px 0 15px rgba(0,0,0,0.1);
+    transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1000;
+    overflow-y: auto;
+    padding: 60px 10px 20px 10px;
+}
+
+.sidebar.active {
+    left: 0;
+}
+
+.sidebar .toggle-container {
+    flex-direction: column;
+    gap: 5px;
+}
+
+.sidebar .toggle-btn {
+    width: 100%;
+    justify-content: flex-start;
+    padding: 12px 15px;
+    border-radius: 4px;
+    margin-bottom: 5px;
+}
+
+.main-content {
+    width: 100%;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    background-color: white;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 20px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Button Styles - Updated for better appearance */
+.toggle-btn {
+    padding: 12px 20px;
+    background-color: white;
+    color: #4CAF50;
+    border: 2px solid #4CAF50;
+    cursor: pointer;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    font-size: 14px;
+    font-weight: 600;
+    width: 100%;
+    justify-content: flex-start;
+    margin-bottom: 5px;
+}
+
+.toggle-btn i {
+    font-size: 18px;
+    color: inherit;
+}
+
+.toggle-btn.active {
+    background-color: #4CAF50;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.toggle-btn:hover {
+    background-color: #4CAF50;
+    color: white;
+    transform: translateY(-1px);
+}
+
+/* Sapphire shade for sidebar buttons */
+.toggle-btn#company-info-toggle,
+.toggle-btn#customer-info-toggle,
+.toggle-btn#bill-view-toggle,
+.toggle-btn#saved-bills-toggle {
+    color: #0F52BA;
+    border-color: #0F52BA;
+    background-color: rgba(15, 82, 186, 0.1);
+}
+
+.toggle-btn#company-info-toggle.active,
+.toggle-btn#customer-info-toggle.active,
+.toggle-btn#bill-view-toggle.active,
+.toggle-btn#saved-bills-toggle.active {
+    background-color: #0F52BA;
+    color: white;
+}
+
+.toggle-btn#company-info-toggle:hover,
+.toggle-btn#customer-info-toggle:hover,
+.toggle-btn#bill-view-toggle:hover,
+.toggle-btn#saved-bills-toggle:hover {
+    background-color: #0F52BA;
+    color: white;
+}
+
+/* Specific button colors - when active, they'll have white text and colored background */
+.toggle-btn#save-bill-btn {
+    color: #2196F3;
+    border-color: #2196F3;
+}
+
+.toggle-btn#save-bill-btn.active {
+    background-color: #2196F3;
+    color: white;
+}
+
+.toggle-btn#save-bill-btn:hover {
+    background-color: #2196F3;
+    color: white;
+}
+
+.toggle-btn#manage-customers-btn {
+    color: #FF9800;
+    border-color: #FF9800;
+}
+
+.toggle-btn#manage-customers-btn.active {
+    background-color: #FF9800;
+    color: white;
+}
+
+.toggle-btn#manage-customers-btn:hover {
+    background-color: #FF9800;
+    color: white;
+}
+
+.toggle-btn#clear-customer-info-btn {
+    color: #ff5722;
+    border-color: #ff5722;
+}
+
+.toggle-btn#clear-customer-info-btn.active {
+    background-color: #ff5722;
+    color: white;
+}
+
+.toggle-btn#clear-customer-info-btn:hover {
+    background-color: #ff5722;
+    color: white;
+}
+
+.toggle-btn#backup-btn {
+    color: #9C27B0;
+    border-color: #9C27B0;
+}
+
+.toggle-btn#backup-btn.active {
+    background-color: #9C27B0;
+    color: white;
+}
+
+.toggle-btn#backup-btn:hover {
+    background-color: #9C27B0;
+    color: white;
+}
+
+.toggle-btn#restore-btn {
+    color: #607D8B;
+    border-color: #607D8B;
+}
+
+.toggle-btn#restore-btn.active {
+    background-color: #607D8B;
+    color: white;
+}
+
+.toggle-btn#restore-btn:hover {
+    background-color: #607D8B;
+    color: white;
+}
+
+.toggle-btn#ledger-toggle {
+    color: #795548;
+    border-color: #795548;
+}
+
+.toggle-btn#ledger-toggle.active {
+    background-color: #795548;
+    color: white;
+}
+
+.toggle-btn#ledger-toggle:hover {
+    background-color: #795548;
+    color: white;
+}
+
+.toggle-btn#manage-items-toggle {
+    color: #009688;
+    border-color: #009688;
+}
+
+.toggle-btn#manage-items-toggle.active {
+    background-color: #009688;
+    color: white;
+}
+
+.toggle-btn#manage-items-toggle:hover {
+    background-color: #009688;
+    color: white;
+}
+
+.toggle-btn#funding-toggle {
+    color: #E91E63;
+    border-color: #E91E63;
+}
+
+.toggle-btn#funding-toggle.active {
+    background-color: #E91E63;
+    color: white;
+}
+
+.toggle-btn#funding-toggle:hover {
+    background-color: #E91E63;
+    color: white;
+}
+
+/* Action buttons in main content */
+.action-btn {
+    padding: 10px 20px;
+    background-color: white;
+    color: #2196F3;
+    border: 2px solid #2196F3;
+    cursor: pointer;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    transition: all 0.3s ease;
+    font-weight: 600;
+}
+
+.action-btn:hover {
+    background-color: #2196F3;
+    color: white;
+    transform: translateY(-1px);
+}
+
+/* Add item and remove item buttons */
+.add-item-btn,
+.remove-item-btn {
+    padding: 5px 10px;
+    background-color: white;
+    color: #4CAF50;
+    border: 2px solid #4CAF50;
+    cursor: pointer;
+    border-radius: 4px;
+    margin: 5px;
+    transition: all 0.3s ease;
+    font-weight: 600;
+}
+
+.add-item-btn:hover {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.remove-item-btn {
+    color: #f44336;
+    border-color: #f44336;
+}
+
+.remove-item-btn:hover {
+    background-color: #f44336;
+    color: white;
+}
+
+/* Customer action buttons */
+.use-customer-btn {
+    background-color: white;
+    color: #4CAF50;
+    border: 2px solid #4CAF50;
+}
+
+.use-customer-btn:hover {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.payment-action-btn {
+    background-color: white;
+    color: #9C27B0;
+    border: 2px solid #9C27B0;
+}
+
+.payment-action-btn:hover {
+    background-color: #9C27B0;
+    color: white;
+}
+
+.delete-customer-btn {
+    background-color: white;
+    color: #f44336;
+    border: 2px solid #f44336;
+}
+
+.delete-customer-btn:hover {
+    background-color: #f44336;
+    color: white;
+}
+
+/* Item action buttons */
+.use-item-btn {
+    background-color: white;
+    color: #4CAF50;
+    border: 2px solid #4CAF50;
+}
+
+.use-item-btn:hover {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.delete-item-btn {
+    background-color: white;
+    color: #f44336;
+    border: 2px solid #f44336;
+}
+
+.delete-item-btn:hover {
+    background-color: #f44336;
+    color: white;
+}
+
+/* Saved bills action buttons */
+.load-bill-btn {
+    padding: 5px ;
+    background-color: white;
+    color: #4CAF50;
+    border: 2px solid #4CAF50;
+    border-radius: 4px;
+}
+
+.load-bill-btn:hover {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.delete-bill-btn {
+    background-color: white;
+    color: #f44336;
+    border: 2px solid #f44336;
+}
+
+.delete-bill-btn:hover {
+    background-color: #f44336;
+    color: white;
+}
+
+/* Form buttons */
+button[type="button"], 
+button:not(.toggle-btn):not(.action-btn):not(.add-item-btn):not(.remove-item-btn):not(.use-customer-btn):not(.delete-customer-btn):not(.use-item-btn):not(.delete-item-btn):not(.load-bill-btn):not(.delete-bill-btn) {
+    padding: 8px 16px;
+    background-color: white;
+    color: #2196F3;
+    border: 2px solid #2196F3;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    font-weight: 600;
+}
+
+button[type="button"]:hover, 
+button:not(.toggle-btn):not(.action-btn):not(.add-item-btn):not(.remove-item-btn):not(.use-customer-btn):not(.delete-customer-btn):not(.use-item-btn):not(.delete-item-btn):not(.load-bill-btn):not(.delete-bill-btn):hover {
+    background-color: #2196F3;
+    color: white;
+}
+
+/* Print button specific style */
+#print-bill-btn {
+    background-color: white;
+    color: #FF9800;
+    border: 2px solid #FF9800;
+}
+
+#print-bill-btn:hover {
+    background-color: #FF9800;
+    color: white;
+}
+
+/* Edit bill button specific style */
+#edit-bill-btn {
+    background-color: white;
+    color: #2196F3;
+    border: 2px solid #2196F3;
+}
+
+#edit-bill-btn:hover {
+    background-color: #2196F3;
+    color: white;
+}
+
+/* Generate bill button specific style */
+#generate-bill {
+    background-color: white;
+    color: #4CAF50;
+    border: 2px solid #4CAF50;
+}
+
+#generate-bill:hover {
+    background-color: #4CAF50;
+    color: white;
+}
+
+/* Save company info button specific style */
+#save-company-info {
+    background-color: white;
+    color: #2196F3;
+    border: 2px solid #2196F3;
+}
+
+#save-company-info:hover {
+    background-color: #2196F3;
+    color: white;
+}
+
+/* Print ledger button specific style */
+#print-ledger-btn {
+    background-color: white;
+    color: #795548;
+    border: 2px solid #795548;
+}
+
+#print-ledger-btn:hover {
+    background-color: #795548;
+    color: white;
+}
+
+/* Add new item button specific style */
+#add-new-item-btn {
+    background-color: white;
+    color: #009688;
+    border: 2px solid #009688;
+}
+
+#add-new-item-btn:hover {
+    background-color: #009688;
+    color: white;
+}
+
+/* Sidebar specific styles */
+.sidebar .toggle-container {
+    flex-direction: column;
+    gap: 5px;
+}
+
+.sidebar .toggle-btn {
+    width: 100%;
+    justify-content: flex-start;
+    padding: 12px 15px;
+    border-radius: 4px;
+    margin-bottom: 5px;
+}
+
+/* Ensure material icons inherit the text color */
+.material-icons {
+    color: inherit;
+}
+
+.input-section,
+.bill-section,
+.company-info-section,
+.saved-bills-section,
+.customers-section {
+    display: none;
+}
+
+.input-section.active,
+.bill-section.active,
+.company-info-section.active,
+.saved-bills-section.active,
+.customers-section.active {
+    display: block;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    position: relative;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+th,
+td {
+    border: 1px solid #ddd;
+    padding: 5px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+.invoice-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.invoice-header h2 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.invoice-header h4 {
+    font-weight: 500;
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+.company-info,
+.consignee-info,
+.buyer-info {
+    margin-bottom: 20px;
+}
+
+.company-info h3,
+.consignee-info h3,
+.buyer-info h3 {
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 5px;
+}
+
+.invoice-number-date {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    font-size: 1.10rem;
+    font-weight: bold;
+}
+
+.items-table {
+    margin-bottom: 20px;
+}
+
+.total-section {
+    margin-bottom: 20px;
+}
+
+.total-section table {
+    width: 50%;
+    margin-left: auto;
+}
+
+.tax-section {
+    margin-bottom: 20px;
+}
+
+.tax-section table {
+    width: 100%;
+}
+.declaration {
+    margin-top: 30px;
+    padding-top: 10px;
+    border-top: 1px solid #ddd;
+}
+
+.action-buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    gap: 10px;
+}
+
+.add-item-btn:hover {
+    background-color: #45a049;
+}
+
+.remove-item-btn:hover {
+    background-color: #d32f2f;
+}
+
+.items-input table {
+    margin-bottom: 10px;
+}
+
+.items-input th:last-child,
+.items-input td:last-child {
+    width: 100px;
+}
+
+.banking-details {
+    margin-top: 20px;
+    padding-top: 10px;
+    border-top: 1px solid #ddd;
+}
+
+.banking-details h3 {
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 5px;
+}
+
+.gst-input-group {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.gst-input-group input {
+    width: auto;
+    flex: 1;
+}
+
+.section-divider {
+    margin: 30px 0;
+    border-top: 2px solid #ddd;
+}
+
+.customer-type-selector {
+    margin-bottom: 20px;
+}
+
+.customer-type-selector select {
+    width: auto;
+    min-width: 200px;
+}
+
+.ship-to-section {
+    display: none;
+}
+
+.ship-to-section.active {
+    display: block;
+}
+
+/* Print styles */
+/* Print styles */
+@media print {
+    .sidebar-toggle,
+    .sidebar,
+    .action-buttons,
+    .input-section,
+    .company-info-section,
+    .saved-bills-section,
+    .customers-section,
+    .ledger-search-container,
+    .ledger-section .action-buttons,
+    .ledger-table .load-bill-btn,
+    .payment-dialog,
+    h1 {
+        display: none !important;
+    }
+
+    /* Only show the active section */
+    .bill-section.active {
+        display: block !important;
+    }
+    
+    .ledger-section.active {
+        display: block !important;
+    }
+
+    body {
+        padding: 0;
+        background-color: white;
+        margin: 0;
+    }
+
+    .container {
+        box-shadow: none;
+        padding: 0;
+        margin: 0;
+        max-width: none;
+    }
+    
+    /* Hide action columns in ledger tables (last column with buttons) */
+    .ledger-table th:last-child,
+    .ledger-table td:last-child {
+        display: none !important;
+    }
+    
+    /* Ensure all ledger table headers and content are visible */
+    .ledger-table th,
+    .ledger-table td {
+        display: table-cell !important;
+    }
+    
+    /* Style for bills and payments table headers - KEEP THE "BILLS" AND "PAYMENTS" HEADERS */
+    .ledger-table thead tr:first-child th {
+        background-color: #f0f0f0 !important;
+        color: #000 !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+        display: table-cell !important;
+    }
+    
+    /* Make sure all table rows are visible in ledger */
+    .ledger-table tr {
+        display: table-row !important;
+        page-break-inside: avoid !important;
+    }
+    
+    /* Ensure tables don't get cut off */
+    .ledger-table {
+        display: table !important;
+        page-break-inside: auto !important;
+    }
+    
+    /* Remove any overflow restrictions */
+    .ledger-section,
+    .ledger-results,
+    .ledger-table {
+        overflow: visible !important;
+        height: auto !important;
+        max-height: none !important;
+    }
+
+    /* Ensure manage items section is hidden */
+    .manage-items-section {
+        display: none !important;
+    }
+
+    /* Ensure funding section is hidden */
+    .funding-section {
+        display: none !important;
+    }
+}
+
+.bank-info {
+    font-size: 14px;
+    padding: 2px 0 2px 8px;
+}
+
+.saved-bills-section {
+    margin-top: 20px;
+}
+
+.saved-bills-search {
+    margin-bottom: 20px;
+}
+
+.saved-bills-list {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.saved-bill-item {
+    padding: 10px;
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.saved-bill-item:hover {
+    background-color: #f5f5f5;
+}
+
+.saved-bill-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+.saved-bill-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.saved-bill-actions button {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.loading-message {
+    text-align: center;
+    padding: 20px;
+    color: #666;
+}
+
+.align-center {
+    text-align: center;
+}
+
+#bill-tax-tbody tr td {
+    text-align: center;
+}
+
+.items-table table td {
+    text-align: center;
+}
+
+.items-table table td:nth-child(2) {
+    text-align: left;
+}
+
+.items-table table th {
+    text-align: center;
+}
+
+.items-table table th:nth-child(2) {
+    text-align: left;
+}
+
+/* New CSS for side by side layout */
+.consignee-buyer-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.consignee-info,
+.buyer-info {
+    flex: 1;
+    margin-bottom: 0;
+}
+
+.buyer-info {
+    display: none;
+}
+
+.buyer-info.active {
+    display: block;
+}
+
+/* Customer suggestions */
+.customer-suggestions {
+    position: absolute;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    max-height: 200px;
+    overflow-y: auto;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    display: none;
+}
+
+.customer-suggestion-item {
+    padding: 10px;
+    cursor: pointer;
+    border-bottom: 1px solid #eee;
+}
+
+.customer-suggestion-item:hover {
+    background-color: #f5f5f5;
+}
+
+.customer-suggestion-item:last-child {
+    border-bottom: none;
+}
+
+/* Customers section */
+.customers-search {
+    margin-bottom: 20px;
+}
+
+.customers-list {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.customer-item {
+    padding: 15px;
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.customer-item:hover {
+    background-color: #f9f9f9;
+}
+
+.customer-details {
+    flex: 1;
+}
+
+.customer-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.customer-actions button {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+#bill-totals-table tbody td:nth-child(2) {
+    text-align: right;
+}
+
+#bill-totals-table tbody td {
     padding: 5px 20px 5px 20px;
 }
 
- #bill-items-tbody td:nth-last-child(-n+2) {
+#bill-items-tbody td:nth-last-child(-n+2) {
     text-align: right;
     padding-right: 20px;
-  }
-  #bill-consignee-name,#bill-buyer-name{
+}
+
+#bill-consignee-name,
+#bill-buyer-name {
     text-transform: uppercase;
     font-size: 1rem;
+}
+
+/* Button text visibility */
+.btn-text {
+    display: inline;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 767px) {
+    .sidebar.active {
+        width: 250px;
+        left: 0;
+    }
+    
+    .sidebar-toggle {
+        top: 10px;
+        left: 10px;
+    }
+    
+    .items-input,
+    .items-table,
+    .tax-section {
+        overflow-x: auto;
+    }
+}
+
+/* Hide the old toggle container that was in the main content */
+.toggle-container:not(.sidebar .toggle-container) {
+    display: none;
+}
+
+/* Dark overlay for mobile when sidebar is open */
+@media (max-width: 767px) {
+    .sidebar.active::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        
+        z-index: -1;
+    }
+}
+
+/* Sidebar overlay for mobile */
+.sidebar-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+@media (max-width: 767px) {
+    .sidebar-overlay.active {
+        display: block;
+    }
+}
+
+/* Ledger section */
+.ledger-section {
+    display: none;
+}
+
+.ledger-section.active {
+    display: block;
+}
+
+.ledger-search-container {
+    margin-bottom: 20px;
+}
+
+.ledger-search-container .form-group {
+    margin-bottom: 0;
+}
+
+.ledger-results {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.ledger-item {
+    padding: 10px;
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+    border-radius: 4px;
+}
+
+.ledger-summary {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+
+/* Ensure the print button in ledger section looks consistent */
+.ledger-section .action-btn {
+    margin: 5px;
+}
+
+/* Ledger table styles */
+.ledger-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.ledger-table th,
+.ledger-table td {
+    border: 1px solid #ddd;
+    padding: 6px;
+    text-align: left;
+}
+
+.ledger-table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+.ledger-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.ledger-table tr:hover {
+    background-color: #f5f5f5;
+}
+/* Close sidebar on PC when clicking outside */
+@media (min-width: 768px) {
+    .sidebar-overlay.active {
+        display: block;
+    }
+}
+
+/* Manage Items Section */
+.manage-items-section {
+    display: none;
+}
+
+.manage-items-section.active {
+    display: block;
+}
+
+.items-search {
+    margin-bottom: 20px;
+}
+
+.add-item-form {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.add-item-form h3 {
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.items-list {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.item-item {
+    padding: 15px;
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.item-item:hover {
+    background-color: #f9f9f9;
+}
+
+.item-details {
+    flex: 1;
+}
+
+.item-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.item-actions button {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* Item suggestions in customer info */
+.item-suggestions {
+    position: absolute;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    max-height: 200px;
+    overflow-y: auto;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    display: none;
+}
+
+.item-suggestion-item {
+    padding: 10px;
+    cursor: pointer;
+    border-bottom: 1px solid #eee;
+}
+
+.item-suggestion-item:hover {
+    background-color: #f5f5f5;
+}
+
+.item-suggestion-item:last-child {
+    border-bottom: none;
+}
+
+.items-input table td {
+    position: relative;
+}
+
+.items-input .item-suggestions {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 1000;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    display: none;
+}
+
+/* Payment Dialog Styles */
+.payment-dialog {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 2000;
+    align-items: center;
+    justify-content: center;
+}
+
+.payment-dialog.active {
+    display: flex;
+}
+
+.payment-dialog-content {
+    background: white;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 800px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.payment-dialog-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid #ddd;
+    background-color: #f8f9fa;
+    border-radius: 8px 8px 0 0;
+}
+
+.payment-dialog-header h3 {
+    margin: 0;
+    color: #333;
+}
+
+.close-payment-dialog {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #666;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.close-payment-dialog:hover {
+    color: #333;
+    background-color: #e9ecef;
+    border-radius: 50%;
+}
+
+.payment-dialog-body {
+    padding: 20px;
+}
+
+.payment-search {
+    margin-bottom: 20px;
+}
+
+.add-payment-form {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.add-payment-form h4 {
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.payments-list {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.payments-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.payments-table th,
+.payments-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+.payments-table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+.payments-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.payment-actions {
+    display: flex;
+    gap: 5px;
+}
+
+.edit-payment-btn,
+.delete-payment-btn {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    font-size: 12px;
+}
+
+.edit-payment-btn {
+    background-color: white;
+    color: #2196F3;
+    border: 1px solid #2196F3;
+}
+
+.edit-payment-btn:hover {
+    background-color: #2196F3;
+    color: white;
+}
+
+.delete-payment-btn {
+    background-color: white;
+    color: #f44336;
+    border: 1px solid #f44336;
+}
+
+.delete-payment-btn:hover {
+    background-color: #f44336;
+    color: white;
+}
+
+/* Funding Section */
+.funding-section {
+    display: none;
+}
+
+.funding-section.active {
+    display: block;
+}
+
+.funding-info {
+    margin-bottom: 30px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+}
+
+.qr-section h3 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.payment-details {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.payment-details p {
+    margin: 5px 0;
+}
+
+.bank-details {
+    background: #f9fafb;
+    padding: 5px 20px;
+    border-radius: 8px;
+    font-family: "Segoe UI", Arial, sans-serif;
+    color: #333;
+    line-height: 1.6;
+    max-width: 700px;
+    margin: 30px auto;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
   }
 
-  /* responsive */
-
-@media (max-width: 1000px) {
-  .toggle-btn {
-    font-size: 0; /* hide text */
+  .bank-details p {
+    margin: 10px 0;
   }
 
-  .items-input, .items-table,.tax-section{
+  .bank-details strong {
+    color: #0699fc;
+  }
+
+  .bank-details .icon {
+    margin-right: 6px;
+    color: #0699fc;
+  }
+
+  .bank-details a {
+    color: #0699fc;
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  .bank-details a:hover {
+    text-decoration: underline;
+  }
+
+.donors-section {
+    margin-top: 30px;
+}
+
+.donors-filter {
+    margin-bottom: 20px;
+}
+
+.donors-filter label {
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+.donors-filter select {
+    width: auto;
+    min-width: 150px;
+}
+
+.donors-table {
     overflow-x: auto;
-  }
+}
+
+.donors-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.donors-table th,
+.donors-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+}
+
+.donors-table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+.donors-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.somespace{
+    margin-bottom: 18px;
 }
